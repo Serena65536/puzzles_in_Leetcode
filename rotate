@@ -1,0 +1,25 @@
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        n=len(matrix)
+        tem=0
+        def spin(i,j):
+            tem=matrix[i][j]
+            matrix[i][j]=matrix[n-1-j][i]
+            matrix[n-1-j][i]=matrix[n-1-i][n-1-j]
+            matrix[n-1-i][n-1-j]=matrix[j][n-1-i]
+            matrix[j][n-1-i]=tem
+            matrix[i][j]+=10000
+            matrix[n-1-j][i]+=10000
+            matrix[n-1-i][n-1-j]+=10000
+            matrix[j][n-1-i]+=10000
+            return None
+        for i in range(n):
+            for j in range(n):
+                if matrix[i][j]>1000:
+                    continue
+                spin(i,j)
+        for i in range(n):
+            for j in range(n):
+                while matrix[i][j]>1000:
+                    matrix[i][j]-=10000
+        return None
