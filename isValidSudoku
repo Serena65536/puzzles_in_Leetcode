@@ -1,0 +1,20 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        s=0
+        for i in range(9):
+            vor1,vor2,vor3=[],[],[]
+            for j in range(9):
+                if board[j][i] in vor1 and board[j][i]!='.':
+                    s+=1
+                vor1.append(board[j][i])
+                if board[i][j] in vor2 and board[i][j]!='.':
+                    s+=1
+                vor2.append(board[i][j])
+                if (board[i//3*3+j//3][i%3*3+j%3] in vor3 and
+                    board[i//3*3+j//3][i%3*3+j%3]!='.'):
+                    s+=1
+                vor3.append(board[i//3*3+j//3][i%3*3+j%3])
+        if s==0:
+            return True
+        else:
+            return False
