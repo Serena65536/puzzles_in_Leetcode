@@ -1,0 +1,28 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        max_num=0
+        def depth(r):
+            nonlocal max_num
+            if not r:
+                return 0
+            if not r.left and not r.right:
+                return 1
+            if r.right and not r.left:
+                max_num=depth(r.right)+1
+            if r.left and not r.right:
+                max_num=depth(r.left)+1
+            if r.left and r.right:
+                max_num=max(depth(r.left),depth(r.right))+1
+            return max_num
+        return depth(root)
+
+作者：水杨酸
+链接：https://leetcode.cn/problems/maximum-depth-of-binary-tree/solutions/3915064/yi-bian-guo-liao-huan-ting-jian-dan-de-b-0sr1/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
