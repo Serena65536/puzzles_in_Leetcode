@@ -1,0 +1,43 @@
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        m=len(grid)
+        n=len(grid[0])
+        queue=[]
+        clean_num=0
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j]==1:
+                    clean_num+=1
+                elif grid[i][j]==2:
+                    queue.append((i,j))
+        turn=0
+        while clean_num>0 and len(queue)>0:
+            turn+=1
+            l=len(queue)
+            for i in range(l):
+                j,k=queue.pop(0)
+                if j>0 and grid[j-1][k]==1:
+                    grid[j-1][k]=2
+                    clean_num-=1
+                    queue.append((j-1,k))
+                if j<m-1 and grid[j+1][k]==1:
+                    grid[j+1][k]=2
+                    clean_num-=1
+                    queue.append((j+1,k))
+                if k>0 and grid[j][k-1]==1:
+                    grid[j][k-1]=2
+                    clean_num-=1
+                    queue.append((j,k-1))
+                if k<n-1 and grid[j][k+1]==1:
+                    grid[j][k+1]=2
+                    clean_num-=1
+                    queue.append((j,k+1))
+        if clean_num>0:
+            return -1
+        else:
+            return turn
+
+作者：水杨酸
+链接：https://leetcode.cn/problems/rotting-oranges/solutions/3916146/dao-yu-wen-ti-jin-jie-ban-by-6allant-cer-f0lq/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
