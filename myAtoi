@@ -1,0 +1,30 @@
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        l = len(s)
+        n = 0
+        m = 0
+        j = 0
+        for i in range(l):
+            if (m > 0 or j > 0) and not s[i].isdigit():
+                break
+            if s[i] == " " and j == 0:
+                continue
+
+            if s[i] == "-":
+                m += 3
+            elif s[i] == "+":
+                m += 4
+            elif not s[i].isdigit():
+                break
+            if s[i].isdigit():
+                n = n * 10 + int(s[i])
+                j += 1
+
+        if m == 3:
+            n = -n
+        if n > (2**31) - 1:
+            return 2**31 - 1
+        elif n < -(2**31):
+            return -(2**31)
+        else:
+            return n
