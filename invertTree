@@ -1,0 +1,23 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        def refl(r):
+            if not r:
+                return
+            temp=r.right
+            r.right=r.left
+            r.left=temp
+            refl(r.right)
+            refl(r.left)
+        refl(root)
+        return root
+
+作者：水杨酸
+链接：https://leetcode.cn/problems/invert-binary-tree/solutions/3916047/jian-jian-dan-dan-de-dfs-by-6allant-cerf-tnz2/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
