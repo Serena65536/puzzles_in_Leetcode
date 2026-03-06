@@ -1,0 +1,17 @@
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        n=len(nums)
+        left=0
+        right=n-1
+        while left<right:
+            if nums[left]!=0:
+                left+=1
+            else:
+                nums.pop(left)
+                nums.append(0)               
+                right-=1
+
+作者：水杨酸
+链接：https://leetcode.cn/problems/move-zeroes/solutions/3916602/jian-jian-dan-dan-shuang-zhi-zhen-by-6al-xp0o/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
