@@ -1,0 +1,35 @@
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        row=[None]*n
+        res=[]
+        def pos(k):
+            position=[]
+            for j in range(n):
+                if j==k-1:
+                    position.append('Q')
+                else:
+                    position.append('.')
+            return ''.join(position)
+        for i in range(n):
+            row[i]=pos(i+1)
+        left=[None]*n
+        right=[None]*n
+        def backtrack(path,used):
+            if len(path)==n:
+                res.append(path.copy())
+                return           
+            for i in range(n):
+                l=len(path)
+                if used[i]==False:
+                    nonlocal left, right
+                    if (l-i) not in left and (l+i) not in right:
+                        used[i]=True                  
+                        left[i]=l-i
+                        right[i]=l+i
+                        path.append(row[i])
+                        backtrack(path,used)
+                        path.pop()
+                        left[i]=None
+                        right[i]=None
+                        used[i]=False
+        backtrack([],
