@@ -1,0 +1,17 @@
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        n=len(temperatures)
+        index=[]
+        res=[0 for _ in range(n)]
+        index.append(0)
+        for i in range(1,n):
+            while index and temperatures[i]>temperatures[index[-1]]:
+                res[index[-1]]=i-index[-1]
+                index.pop()
+            index.append(i)
+        return res
+
+作者：水杨酸
+链接：https://leetcode.cn/problems/daily-temperatures/solutions/3927534/yong-zhan-lai-cun-chu-shang-wei-xun-de-g-ixc8/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
