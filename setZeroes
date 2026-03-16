@@ -1,0 +1,36 @@
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        m=len(matrix)
+        n=len(matrix[0])
+        row=True
+        column=True
+        for i in range(m):
+            if matrix[i][0]==0:
+                row=False
+        for j in range(n):
+            if matrix[0][j]==0:
+                column=False
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j]==0:
+                    matrix[i][0]=0
+                    matrix[0][j]=0
+        for i in range(1,m):
+            if matrix[i][0]==0:
+                for j in range(n):
+                    matrix[i][j]=0
+        for j in range(1,n):
+            if matrix[0][j]==0:
+                for i in range(m):
+                    matrix[i][j]=0
+        if row==False:
+            for i in range(m):
+                matrix[i][0]=0
+        if column==False:
+            for j in range(n):
+                matrix[0][j]=0
+
+作者：水杨酸
+链接：https://leetcode.cn/problems/set-matrix-zeroes/solutions/3926982/duo-ge-du-li-xun-huan-qiang-yu-dan-ge-qi-6guv/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
