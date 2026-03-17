@@ -1,0 +1,41 @@
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:       
+        res=[]
+        ns=len(s)
+        np=len(p)
+        if np>ns:
+            return res
+        left=0
+        right=np-1
+        lack=[]
+        extra=[]
+        temp=list(s[0:np])
+        temp_copy=temp
+        p_copy=list(p)
+        for elem in list(temp):
+            if elem in p_copy:
+                temp_copy.remove(elem)
+                p_copy.remove(elem)
+        extra=temp_copy        
+        lack=p_copy        
+        while right<ns-1:
+            if not lack and not extra:
+                res.append(left)
+            if s[left] in extra:
+                extra.remove(s[left])
+            else:
+                lack.append(s[left])
+            left+=1
+            right+=1
+            if s[right] in lack:
+                lack.remove(s[right])
+            else:
+                extra.append(s[right])
+        if not lack and not extra:
+                res.append(left)
+        return res
+
+作者：水杨酸
+链接：https://leetcode.cn/problems/find-all-anagrams-in-a-string/solutions/3928368/jian-jian-dan-dan-de-hua-dong-chuang-kou-oohy/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
