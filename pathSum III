@@ -1,0 +1,27 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        s=0
+        def dfs(r,num,visited):
+            nonlocal s
+            if not r:
+                return
+            if r.val==num:
+                s+=1
+            if not visited:               
+                dfs(r.left,num,False)
+                dfs(r.right,num,False)
+            dfs(r.left,num-r.val,True)
+            dfs(r.right,num-r.val,True)
+        dfs(root,targetSum,False)
+        return s
+
+作者：水杨酸
+链接：https://leetcode.cn/problems/path-sum-iii/solutions/3945004/po-su-de-dfs-by-6allant-cerfidq-5qx4/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
